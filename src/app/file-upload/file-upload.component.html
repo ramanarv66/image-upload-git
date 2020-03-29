@@ -1,0 +1,29 @@
+<div class="jumbotron">
+  <div class="container">
+    <input type="file" (change)="onChange($event.target.files)" />
+
+    <div>
+      <h3>File Content</h3>
+      <!-- <pre>{{ temp }} </pre> -->
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="formate()">
+      PreviewQuestions</button>&nbsp;
+    <button type="button" class="btn btn-info" (click)="revalidate()">
+      ReValidate</button>&nbsp;
+    <button type="button" class="btn btn-success" (click)="test1()">
+      Test
+    </button>
+    <div *ngIf="eachQuestions">
+      <div *ngFor="let question of eachQuestions; let i = index">
+        <p>{{ question }}</p>
+        <!-- <div class="form-group" *ngFor="let eachOpt of tempArray; let j = index">
+          {{i}} And {{j}}
+          <input type="radio" name="question" [value]="eachOpt" [(ngModel)]="eachOpt">{{eachOpt}}
+        </div> -->
+      </div>
+    </div>
+    <p *ngIf="showError" class="text text-danger">Please Upload questions</p>
+  </div>
+
+</div>

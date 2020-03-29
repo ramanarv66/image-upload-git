@@ -1,0 +1,8 @@
+.ng-invalid.ng-touched {
+  border-left-color: #ff0000;
+  border-left-width: 0.5em;
+}
+.ng-valid {
+  border-left-width: 0.5em;
+  border-left-color: rgb(60, 194, 60);
+}
