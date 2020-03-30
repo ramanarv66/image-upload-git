@@ -1,6 +1,6 @@
 export class QuestionOptions {
     question: string;
-    options: OptionsAll;
+    options: string[] = [];
 }
 export class OptionsAll {
     option: string[];

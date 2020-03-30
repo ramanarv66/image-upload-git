@@ -14,13 +14,20 @@
     <button type="button" class="btn btn-success" (click)="test1()">
       Test
     </button>
-    <div *ngIf="eachQuestions">
-      <div *ngFor="let question of eachQuestions; let i = index">
-        <p>{{ question }}</p>
+    <div *ngIf="eachQuestions" class="form-group">
+      <div *ngFor="let question of questionOptions; let i = index">
+        <p>{{question.question }}</p>
+        <div *ngFor="let eachOption of question.options; let j = index">
+          <input type="radio" name="options" [value]="eachOption" id="radio" [(ngModel)]="selected">
+          {{eachOption}}
+        </div>
         <!-- <div class="form-group" *ngFor="let eachOpt of tempArray; let j = index">
           {{i}} And {{j}}
           <input type="radio" name="question" [value]="eachOpt" [(ngModel)]="eachOpt">{{eachOpt}}
-        </div> -->
+        </div> 
+      <div class="form-group" *ngFor="let eachGender of genders" >
+                <input type="radio" name="gender" ngModel [value]="eachGender"  [(ngModel)]="users.gender">{{eachGender}}
+            </div>-->
       </div>
     </div>
     <p *ngIf="showError" class="text text-danger">Please Upload questions</p>

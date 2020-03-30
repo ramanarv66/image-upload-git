@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionOptions, OptionsAll } from '../model/question-options';
+import { TempOptions } from '../temp-options';
 
 @Component({
   selector: 'app-file-upload',
@@ -10,12 +11,16 @@ export class FileUploadComponent implements OnInit {
 
   fileContent: any = null;
   temp: any;
+  selected: string;
   eachOpt: string;
   questions = [];
   eachQuestions = [];
   eachOptions = [];
+  madOptions: TempOptions;
   tempArray = [];
   options = [];
+  tempABCD = [];
+  chunked_arr = [];
   finalOptions: OptionsAll[] = [];
   finalOptions_ = [];
   questionOptions: QuestionOptions[] = [];
@@ -56,39 +61,55 @@ export class FileUploadComponent implements OnInit {
     console.log('jjjjjjjjjjjjjj')
     console.log(this.eachQuestions);
     console.log('final options')
-    console.log(this.finalOptions)
-    for (let index = 0; index < this.finalOptions.length; index++) {
+    console.log(this.tempABCD)
+    let mad: TempOptions[] = [];
 
+    this.tempABCD.forEach(a => { mad.push(a) });
+    console.log(mad)
 
-    }
+  }
+
+  divideOptions(element: string): string[] {
+    element.split('.').forEach(firstOption => {
+      const tempOption = '' + firstOption.substring(0, firstOption.length - 1).trim();
+      if (tempOption !== '') {
+        this.tempArray.push(tempOption);
+        //this.tempABCD = this.divideArray(this.tempArray, 4);
+      }
+
+    });
+    return this.tempArray;
   }
   formate(): void {
-
+    let mad: TempOptions[] = [];
+    let madQue = new TempOptions();
     if (this.eachQuestions) {
       this.showError = true;
     }
+
+    let questions: QuestionOptions[] = [];
+
     this.questions.forEach(a => console.log(a));
     for (let index = 0; index < this.questions.length; index = index + 2) {
       const tempQuestion = new QuestionOptions();
       tempQuestion.question = this.questions[index];
-      this.eachQuestions.push(this.questions[index]);
-      this.options.push((this.questions[index + 1]));
-      this.showError = false;
-    }
-    this.options.forEach(a => {
-      a.split('.').forEach(x => {
-        if (x !== '') {
-
-          const temp = '' + x.substring(0, x.length - 1).trim();
-          if (temp !== '') {
-            let obj = new OptionsAll();
-            this.finalOptions.push(obj)
-          }
-
-        }
+      const eachOptionAnswers = this.questions[index + 1];
+      this.finalOptions_ = this.divideOptions(eachOptionAnswers);
+      this.finalOptions_.forEach(element => {
+        tempQuestion.options.push(element);
       });
-    });
+      this.finalOptions_ = [];
+      this.tempArray = [];
+      // this.tempABCD = this.divideArray(this.finalOptions_, 4);
+      this.showError = false;
+      questions.push(tempQuestion);
+
+    }
+    this.questionOptions = questions;
+    console.log(this.questionOptions);
+
   }
+
 
   test1() {
     //a) callable b)Runnable c)Threads d)None e)d
@@ -96,18 +117,32 @@ export class FileUploadComponent implements OnInit {
       console.log(a);
       a.split('.').forEach(x => { this.tempArray.push(x); console.log(x) })
     });
-    // this.sampleArray.forEach(a => {
-    //   console.log(a);
-    //   a.split(')').forEach(x => { x.split('').forEach(z => { this.tempArray.push(z); console.log(z) }) })
-    // });
-    console.log('okkkkkkkkkkkk')
-    // console.log(this.tempArray)
+    console.log('okkkkkkkkkkkk');
 
     this.tempArray.forEach(element => {
       const str = '' + element;
-      console.log(str.substring(0, str.length - 1));
-      this.finalOptions_.push(str.substring(0, str.length - 1));
+      console.log();
+      if (str.substring(0, str.length - 1) !== '') {
+        this.finalOptions_.push(str.substring(0, str.length - 1));
+      }
     });
+    console.log(this.finalOptions_);
+    let index = 0;
+    const size = 4;
+    while (index < this.finalOptions_.length) {
+      this.chunked_arr.push(this.finalOptions_.slice(index, size + index));
+      index += size;
+    }
+    console.log(this.chunked_arr);
+  }
+
+  divideArray(arr: any[], size: number): any[] {
+    let index = 0;
+    while (index < arr.length) {
+      this.chunked_arr.push(arr.slice(index, size + index));
+      index += size;
+    }
+    return this.chunked_arr;
   }
 
 }
