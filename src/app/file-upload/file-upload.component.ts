@@ -70,15 +70,19 @@ export class FileUploadComponent implements OnInit {
   }
 
   divideOptions(element: string): string[] {
-    element.split('.').forEach(firstOption => {
-      const tempOption = '' + firstOption.substring(0, firstOption.length - 1).trim();
-      if (tempOption !== '') {
-        this.tempArray.push(tempOption);
-        //this.tempABCD = this.divideArray(this.tempArray, 4);
-      }
+    console.log(element)
+    if (element) {
+      element.split('.').forEach(firstOption => {
+        const tempOption = '' + firstOption.substring(0, firstOption.length - 1).trim();
+        if (tempOption !== '') {
+          this.tempArray.push(tempOption);
+          //this.tempABCD = this.divideArray(this.tempArray, 4);
+        }
 
-    });
-    return this.tempArray;
+      });
+      return this.tempArray;
+    }
+
   }
   formate(): void {
     let mad: TempOptions[] = [];
@@ -90,20 +94,31 @@ export class FileUploadComponent implements OnInit {
     let questions: QuestionOptions[] = [];
 
     this.questions.forEach(a => console.log(a));
+    let id = 1;
     for (let index = 0; index < this.questions.length; index = index + 2) {
       const tempQuestion = new QuestionOptions();
       tempQuestion.question = this.questions[index];
+      tempQuestion.id = id;
+
       const eachOptionAnswers = this.questions[index + 1];
-      this.finalOptions_ = this.divideOptions(eachOptionAnswers);
-      this.finalOptions_.forEach(element => {
-        tempQuestion.options.push(element);
-      });
+      if (eachOptionAnswers !== '') {
+        this.finalOptions_ = this.divideOptions(eachOptionAnswers);
+        if (this.finalOptions_) {
+          this.finalOptions_.forEach(element => {
+            if (element !== '') {
+              tempQuestion.options.push(element);
+            }
+          });
+        }
+      }
+
+
       this.finalOptions_ = [];
       this.tempArray = [];
       // this.tempABCD = this.divideArray(this.finalOptions_, 4);
       this.showError = false;
       questions.push(tempQuestion);
-
+      id++;
     }
     this.questionOptions = questions;
     console.log(this.questionOptions);

@@ -18,8 +18,9 @@
       <div *ngFor="let question of questionOptions; let i = index">
         <p>{{question.question }}</p>
         <div *ngFor="let eachOption of question.options; let j = index">
-          <input type="radio" name="options" [value]="eachOption" id="radio" [(ngModel)]="selected">
+          <input type="radio" name="{{question.id}}" [value]="eachOption" id="{{question.id}}" [(ngModel)]="selected">
           {{eachOption}}
+
         </div>
         <!-- <div class="form-group" *ngFor="let eachOpt of tempArray; let j = index">
           {{i}} And {{j}}
