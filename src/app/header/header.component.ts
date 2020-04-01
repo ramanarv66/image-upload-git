@@ -10,7 +10,7 @@ import { LoginService } from '../login.service';
 export class HeaderComponent implements OnInit {
 
   btnName: string;
-  constructor(private router: Router, private loginService: LoginService) {
+  constructor(private router: Router, public loginService: LoginService) {
 
     this.loginService.getBtnName().subscribe((resp: string) => {
       this.btnName = resp;

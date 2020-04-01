@@ -10,6 +10,7 @@ import { TempOptions } from '../temp-options';
 export class FileUploadComponent implements OnInit {
 
   fileContent: any = null;
+  questionAnswersMap = new Map();
   temp: any;
   selected: string;
   eachOpt: string;
@@ -97,21 +98,21 @@ export class FileUploadComponent implements OnInit {
     let id = 1;
     for (let index = 0; index < this.questions.length; index = index + 2) {
       const tempQuestion = new QuestionOptions();
-      tempQuestion.question = this.questions[index];
-      tempQuestion.id = id;
-
-      const eachOptionAnswers = this.questions[index + 1];
-      if (eachOptionAnswers !== '') {
-        this.finalOptions_ = this.divideOptions(eachOptionAnswers);
-        if (this.finalOptions_) {
-          this.finalOptions_.forEach(element => {
-            if (element !== '') {
-              tempQuestion.options.push(element);
-            }
-          });
+      if (this.questions[index] !== '' && this.questions[index] !== undefined) {
+        tempQuestion.question = this.questions[index];
+        tempQuestion.id = id;
+        const eachOptionAnswers = this.questions[index + 1];
+        if (eachOptionAnswers !== undefined && eachOptionAnswers !== '') {
+          this.finalOptions_ = this.divideOptions(eachOptionAnswers);
+          if (this.finalOptions_) {
+            this.finalOptions_.forEach(element => {
+              if (element !== '' && element !== undefined) {
+                tempQuestion.options.push(element);
+              }
+            });
+          }
         }
       }
-
 
       this.finalOptions_ = [];
       this.tempArray = [];
@@ -159,5 +160,19 @@ export class FileUploadComponent implements OnInit {
     }
     return this.chunked_arr;
   }
+  optionValue(val: any) {
+    // console.log(val);
+    // console.log(val.target.id)
+    // console.log(val.target.value)
+    this.questionAnswersMap.set(val.target.id, val.target.value);
+  }
 
+  validateAnswers(): void {
+    for (let key of this.questionAnswersMap.keys()) {
+      console.log(key)
+    }
+    for (let value of this.questionAnswersMap.values()) {
+      console.log(value)
+    }
+  }
 }

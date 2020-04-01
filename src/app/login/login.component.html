@@ -3,7 +3,8 @@
         <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="form-group">
                 <label class="form-control-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" email="true" formControlName='email'>
+                <input type="email" class="form-control" id="email" value="ram@mphasis.com" name="email" email="true"
+                    formControlName='email'>
                 <div class="text text-danger"
                     *ngIf="this.loginForm.controls.email.invalid && this.loginForm.controls.email.touched">
                     <small> Enter
@@ -12,8 +13,8 @@
             </div>
             <div class="form-group ">
                 <label class="form-control-label">PassWord</label>
-                <input type="password" class="form-control" id="password" name="password" #password1 required
-                    formControlName='password'>
+                <input type="password" class="form-control" value="abcde" id="password" name="password" #password1
+                    required formControlName='password'>
                 <div *ngIf="this.loginForm.controls.password.invalid && this.loginForm.controls.password.touched"
                     class="text text-danger"><small>Password
                         Invalid</small>

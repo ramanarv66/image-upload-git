@@ -9,6 +9,10 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { QuestionPaperComponent } from './question-paper/question-paper.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ScoresComponent } from './scores/scores.component';
+import { AboutComponent } from './about/about.component';
+import { CandidateComponent } from './candidate/candidate.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { LogoutComponent } from './logout/logout.component';
     HeaderComponent,
     LoginComponent,
     QuestionPaperComponent,
-    LogoutComponent
+    LogoutComponent,
+    ScoresComponent,
+    AboutComponent,
+    CandidateComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

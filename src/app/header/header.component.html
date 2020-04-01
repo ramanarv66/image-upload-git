@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-collapse navbar-dark bg-primary">
-        <a class="navbar-brand" href="www.google.com">
+        <a class="navbar-brand" href="www.google.com">Logo
 
-            <img src="assets/mphasis-logo.png" height="10%" width="10%">
+            <!-- <img src="assets/mphasis-logo.png" height="10%" width="10%"> -->
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
             aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" wfd-id="651">
@@ -12,16 +12,17 @@
         <div class="collapse navbar-collapse" id="navbarColor01" wfd-id="458">
             <ul class="navbar-nav mr-auto" wfd-id="460" *ngIf="this.loginService.isMphasisUserLoggedIn">
                 <li class="nav-item active" wfd-id="464">
-                    <a class="nav-link" href="#">Home <span class="sr-only" wfd-id="465">(current)</span></a>
+                    <a class="nav-link" routerLinkActive="active" routerLink="">Home <span class="sr-only"
+                            wfd-id="465">(current)</span></a>
                 </li>
                 <li class="nav-item" wfd-id="463">
-                    <a class="nav-link" href="#">Scores</a>
+                    <a class="nav-link" routerLinkActive="active" routerLink="scores">Scores</a>
                 </li>
                 <li class="nav-item" wfd-id="462">
-                    <a class="nav-link" href="#">Candidate</a>
+                    <a class="nav-link" routerLinkActive="active" routerLink="candidate">Candidate</a>
                 </li>
                 <li class="nav-item" wfd-id="461">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" routerLinkActive="active" routerLink="about">About</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" wfd-id="459">

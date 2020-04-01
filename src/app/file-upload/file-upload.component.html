@@ -15,13 +15,24 @@
       Test
     </button>
     <div *ngIf="eachQuestions" class="form-group">
+      <label class="col-md-3 col-form-label">Choose Correct Option</label>
       <div *ngFor="let question of questionOptions; let i = index">
-        <p>{{question.question }}</p>
-        <div *ngFor="let eachOption of question.options; let j = index">
-          <input type="radio" name="{{question.id}}" [value]="eachOption" id="{{question.id}}" [(ngModel)]="selected">
-          {{eachOption}}
-
+        <div *ngIf="question.options[0]">
+          <p>{{question.question }}</p>
+          <input type="radio" #optin1 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
+            [value]="question.options[0]" id="{{question.id}}">
+          a){{question.options[0]}}
+          <input type="radio" #optin2 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
+            [value]="question.options[1]" id="{{question.id}}">
+          b){{question.options[1]}}
+          <input type="radio" #optin3 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
+            [value]="question.options[2]" id="{{question.id}}">
+          c){{question.options[2]}}
+          <input type="radio" #optin4 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
+            [value]="question.options[3]" id="{{question.id}}">
+          d){{question.options[3]}}
         </div>
+
         <!-- <div class="form-group" *ngFor="let eachOpt of tempArray; let j = index">
           {{i}} And {{j}}
           <input type="radio" name="question" [value]="eachOpt" [(ngModel)]="eachOpt">{{eachOpt}}
@@ -31,6 +42,7 @@
             </div>-->
       </div>
     </div>
+    <button type="button" class="btn btn-success" (click)="validateAnswers()">Validate</button>
     <p *ngIf="showError" class="text text-danger">Please Upload questions</p>
   </div>
 
