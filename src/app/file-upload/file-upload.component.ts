@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionOptions, OptionsAll } from '../model/question-options';
 import { TempOptions } from '../temp-options';
+import { HttpClient } from '@angular/common/http';
+import { QuestionPaperRequest } from '../question-paper-request';
+import { LoginService } from '../login.service';
+import { QuestionPaperResponse } from '../model/question-paper-response';
+import { SharedService } from '../shared/shared.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -12,42 +17,49 @@ export class FileUploadComponent implements OnInit {
   fileContent: any = null;
   questionAnswersMap = new Map();
   temp: any;
+  score: number;
   selected: string;
   eachOpt: string;
   questions = [];
+  onlyAnswers = [];
   eachQuestions = [];
   eachOptions = [];
   madOptions: TempOptions;
   tempArray = [];
   options = [];
   tempABCD = [];
-  chunked_arr = [];
-  finalOptions: OptionsAll[] = [];
-  finalOptions_ = [];
+  chunkedArray = [];
+  finalOptions = [];
+  finalAnswers = [];
+  tempActualAnswers = [];
+  userAnswers = [];
   questionOptions: QuestionOptions[] = [];
   showError: boolean;
+  message: string;
   sample: string[] = ['a', ' callable b', 'Runnable c', 'Threads d', 'None e', 'd'];
   sampleArray: string[] = ['a.callable b.Runnable c.Threads d.None e.d', 'a.8 b.9 c.3 d.11 e.b', 'a.true b.false c.compilation issue d.Runtime exception e.b'];
-  constructor() { }
+  constructor(private http: HttpClient, private loginService: LoginService, private sharedService: SharedService) { }
 
   ngOnInit() {
   }
 
 
   public onChange(fileList: FileList): void {
-    let file = fileList[0];
-    let fileReader = new FileReader();
+    const file = fileList[0];
+    const fileReader = new FileReader();
 
 
     fileReader.onload = (e) => {
       console.log(fileReader.result);
       this.temp = fileReader.result.toString().split('\n');
 
-      for (var i = 0; i < this.temp.length; ++i) {
-        this.questions[i] = this.temp[i].trim();
+      for (let i = 0; i < this.temp.length; ++i) {
+        if (this.temp[i].trim()) {
+          this.questions[i] = this.temp[i].trim();
+        }
 
       }
-    }
+    };
 
 
     fileReader.readAsText(file);
@@ -57,27 +69,31 @@ export class FileUploadComponent implements OnInit {
     console.log(fileContent);
   }
   revalidate(): void {
-    // console.log(this.eachQuestions);
-    // console.log(this.tempArray);
-    console.log('jjjjjjjjjjjjjj')
-    console.log(this.eachQuestions);
-    console.log('final options')
-    console.log(this.tempABCD)
-    let mad: TempOptions[] = [];
-
-    this.tempABCD.forEach(a => { mad.push(a) });
-    console.log(mad)
 
   }
 
   divideOptions(element: string): string[] {
-    console.log(element)
+    let i = 0;
     if (element) {
       element.split('.').forEach(firstOption => {
         const tempOption = '' + firstOption.substring(0, firstOption.length - 1).trim();
         if (tempOption !== '') {
-          this.tempArray.push(tempOption);
-          //this.tempABCD = this.divideArray(this.tempArray, 4);
+          // this.tempArray.push(tempOption);
+          if (i === 0) {
+            this.tempArray[i] = 'a.' + tempOption;
+          }
+          if (i === 1) {
+            this.tempArray[i] = 'b.' + tempOption;
+          }
+          if (i === 2) {
+            this.tempArray[i] = 'c.' + tempOption;
+          }
+          if (i === 3) {
+            this.tempArray[i] = 'd.' + tempOption;
+          }
+
+          i++;
+          // this.tempABCD = this.divideArray(this.tempArray, 4);
         }
 
       });
@@ -85,15 +101,22 @@ export class FileUploadComponent implements OnInit {
     }
 
   }
+
+  getOnlyAnswers(answers: string[]): string[] {
+
+    answers.forEach(a => {
+      this.tempActualAnswers.push(a.substr(a.length - 1, a.length));
+    });
+
+    return this.tempActualAnswers;
+
+  }
   formate(): void {
-    let mad: TempOptions[] = [];
-    let madQue = new TempOptions();
     if (this.eachQuestions) {
       this.showError = true;
     }
 
-    let questions: QuestionOptions[] = [];
-
+    const questionsFinal: QuestionOptions[] = [];
     this.questions.forEach(a => console.log(a));
     let id = 1;
     for (let index = 0; index < this.questions.length; index = index + 2) {
@@ -102,10 +125,11 @@ export class FileUploadComponent implements OnInit {
         tempQuestion.question = this.questions[index];
         tempQuestion.id = id;
         const eachOptionAnswers = this.questions[index + 1];
+        this.onlyAnswers.push(eachOptionAnswers);
         if (eachOptionAnswers !== undefined && eachOptionAnswers !== '') {
-          this.finalOptions_ = this.divideOptions(eachOptionAnswers);
-          if (this.finalOptions_) {
-            this.finalOptions_.forEach(element => {
+          this.finalOptions = this.divideOptions(eachOptionAnswers);
+          if (this.finalOptions) {
+            this.finalOptions.forEach(element => {
               if (element !== '' && element !== undefined) {
                 tempQuestion.options.push(element);
               }
@@ -113,66 +137,88 @@ export class FileUploadComponent implements OnInit {
           }
         }
       }
-
-      this.finalOptions_ = [];
+      this.finalOptions = [];
       this.tempArray = [];
-      // this.tempABCD = this.divideArray(this.finalOptions_, 4);
+      // this.tempABCD = this.divideArray(this.finalOptions, 4);
       this.showError = false;
-      questions.push(tempQuestion);
+      questionsFinal.push(tempQuestion);
       id++;
     }
-    this.questionOptions = questions;
+    this.questionOptions = questionsFinal;
     console.log(this.questionOptions);
+    this.finalAnswers = this.getOnlyAnswers(this.onlyAnswers);
+    console.log(this.finalAnswers);
+    this.sharedService.setAnswersKey(this.finalAnswers);
+    let questionPaperRequest = new QuestionPaperRequest();
+    questionPaperRequest.questionOptions = this.questionOptions;
+    this.sharedService.setQuestionOptions(this.questionOptions);
+    localStorage.setItem('questions', '' + this.questions);
+    // questionPaperRequest.versionId = 22;
+    // questionPaperRequest.questionPaperContent = '' + this.questions;
+    // questionPaperRequest.questionPaperContent = questionPaperRequest.questionPaperContent.replace(',', ' ');
+    // console.log(questionPaperRequest.questionPaperContent.replace(',', ' '));
+    // questionPaperRequest.uploadedBy = 'Ram'
+    ;
+    // this.http.post('http://localhost:8081/upload/save-questions', questionPaperRequest).subscribe((resp: boolean) => {
+    //   console.log(resp);
+    // }, () => { })
+    // this.http.post('http://localhost:8081/upload/save-questions', questionPaperRequest).subscribe((resp: boolean) => {
+    //   console.log(resp);
+    // }, () => { })
+
 
   }
 
 
   test1() {
-    //a) callable b)Runnable c)Threads d)None e)d
-    this.sampleArray.forEach(a => {
-      console.log(a);
-      a.split('.').forEach(x => { this.tempArray.push(x); console.log(x) })
-    });
-    console.log('okkkkkkkkkkkk');
+    // this.http.get('http://localhost:8081/upload/get-questions').subscribe((resp: QuestionPaperResponse) => {
+    //   console.log(resp.questionPaperContent);
 
-    this.tempArray.forEach(element => {
-      const str = '' + element;
-      console.log();
-      if (str.substring(0, str.length - 1) !== '') {
-        this.finalOptions_.push(str.substring(0, str.length - 1));
-      }
-    });
-    console.log(this.finalOptions_);
-    let index = 0;
-    const size = 4;
-    while (index < this.finalOptions_.length) {
-      this.chunked_arr.push(this.finalOptions_.slice(index, size + index));
-      index += size;
-    }
-    console.log(this.chunked_arr);
+    // });
+
   }
 
   divideArray(arr: any[], size: number): any[] {
     let index = 0;
     while (index < arr.length) {
-      this.chunked_arr.push(arr.slice(index, size + index));
+      this.chunkedArray.push(arr.slice(index, size + index));
       index += size;
     }
-    return this.chunked_arr;
+    return this.chunkedArray;
   }
   optionValue(val: any) {
-    // console.log(val);
-    // console.log(val.target.id)
-    // console.log(val.target.value)
     this.questionAnswersMap.set(val.target.id, val.target.value);
   }
 
   validateAnswers(): void {
-    for (let key of this.questionAnswersMap.keys()) {
+    if (this.userAnswers.length !== this.finalAnswers.length) {
+      console.log('valid')
+    }
+
+    for (const key of this.questionAnswersMap.keys()) {
       console.log(key)
     }
-    for (let value of this.questionAnswersMap.values()) {
-      console.log(value)
+    for (const value of this.questionAnswersMap.values()) {
+      this.userAnswers.push(value.substr(0, 1));
+      // console.log(value)
     }
+    let count = 0;
+    for (let index = 0; index < this.userAnswers.length; index++) {
+
+      if (this.userAnswers[index] === this.finalAnswers[index]) {
+        console.log(this.userAnswers[index]);
+        console.log(this.finalAnswers[index]);
+        count++;
+      }
+      this.score = count;
+
+    }
+    if (this.score >= 0) {
+      this.message = ' Thanks for taking test, Please wait.. You will get the result soon !!!!';
+
+    }
+    console.log('Corrected answers are ' + count);
+    this.userAnswers = [];
+
   }
 }

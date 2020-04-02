@@ -13,6 +13,10 @@ import { ScoresComponent } from './scores/scores.component';
 import { AboutComponent } from './about/about.component';
 import { CandidateComponent } from './candidate/candidate.component';
 import { TestComponent } from './test/test.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 
 @NgModule({
   declarations: [
@@ -31,7 +35,8 @@ import { TestComponent } from './test/test.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

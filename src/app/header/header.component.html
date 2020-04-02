@@ -16,13 +16,16 @@
                             wfd-id="465">(current)</span></a>
                 </li>
                 <li class="nav-item" wfd-id="463">
-                    <a class="nav-link" routerLinkActive="active" routerLink="scores">Scores</a>
+                    <a class="nav-link" routerLinkActive="active" *ngIf="this.loginService.isMphasisUserLoggedIn"
+                        routerLink="scores">Scores</a>
                 </li>
                 <li class="nav-item" wfd-id="462">
-                    <a class="nav-link" routerLinkActive="active" routerLink="candidate">Candidate</a>
+                    <a class="nav-link" routerLinkActive="active" *ngIf="this.loginService.isMphasisUserLoggedIn"
+                        routerLink="candidate">Candidate</a>
                 </li>
                 <li class="nav-item" wfd-id="461">
-                    <a class="nav-link" routerLinkActive="active" routerLink="about">About</a>
+                    <a class="nav-link" routerLinkActive="active" *ngIf="this.loginService.isMphasisUserLoggedIn"
+                        routerLink="about">About</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" wfd-id="459">

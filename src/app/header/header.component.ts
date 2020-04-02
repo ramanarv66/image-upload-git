@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   login(): void {
     if (this.btnName === 'LogOut') {
       this.router.navigate(['logout']);
-      this.loginService.setBtnName('Login')
+      this.loginService.setBtnName('Login');
     } else {
       this.router.navigate(['login']);
 

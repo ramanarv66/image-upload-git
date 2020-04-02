@@ -1,0 +1,7 @@
+---
+applications:
+- name: my-app129
+  memory: 200M
+  buildpack: staticfile_buildpack
+  instances: 1
+  

@@ -1,4 +1,32 @@
-<div class="container">
+<marquee *ngIf="this.questionOptions.length === 0" direction="right" [ngStyle]="{'color':'red','text-align':'center'}">
+    Question Paper not uploaded yet... <b>Please Contact HR</b></marquee>
+<p *ngIf="this.questionOptions.length === 0" direction="right" [ngStyle]="{'color':'red','text-align':'center'}">
+    Question Paper not uploaded yet... <b>Please Contact HR</b></p>
+<div class="container" *ngIf="this.questionOptions.length > 0">
+
     <h4 [ngStyle]="{'color':'blue'}">Welcome to Mphasis</h4>
     <p class="text text-success">Answer all questions</p>
+
+    <div *ngIf="eachQuestions" class="form-group">
+        <label class="col-md-3 col-form-label">Choose Correct Option</label>
+        <div *ngFor="let question of questionOptions; let i = index">
+            <div *ngIf="question.options[0]">
+                <p>{{question.question }}</p>
+                <input type="radio" #optin1 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
+                    [value]="question.options[0]" id="{{question.id}}">
+                {{question.options[0]}}
+                <input type="radio" #optin2 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
+                    [value]="question.options[1]" id="{{question.id}}">
+                {{question.options[1]}}
+                <input type="radio" #optin3 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
+                    [value]="question.options[2]" id="{{question.id}}">
+                {{question.options[2]}}
+                <input type="radio" #optin4 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
+                    [value]="question.options[3]" id="{{question.id}}">
+                {{question.options[3]}}
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-success" (click)="validateAnswers()">Validate</button>
+
 </div>
