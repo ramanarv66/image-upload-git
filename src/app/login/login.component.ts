@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
     } else {
       this.router.navigate(['question-paper']);
       this.loginService.isMphasisUserLoggedIn = false;
+      this.loginService.isCandidate = true;
     }
+
 
   }
 

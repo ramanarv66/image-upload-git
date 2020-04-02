@@ -7,6 +7,8 @@ import { QuestionOptions } from '../model/question-options';
 export class SharedService {
   questionOptions: QuestionOptions[] = [];
   finalAnswers = [];
+  noQuestionsFound: boolean;
+  uploadSuccess: boolean;
   constructor() { }
   setQuestionOptions(quesOptions: QuestionOptions[]) {
     this.questionOptions = quesOptions;

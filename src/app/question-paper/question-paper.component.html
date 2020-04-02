@@ -8,7 +8,7 @@
     <p class="text text-success">Answer all questions</p>
 
     <div *ngIf="eachQuestions" class="form-group">
-        <label class="col-md-3 col-form-label">Choose Correct Option</label>
+        <p class="text text-danger">Choose Correct Option</p>
         <div *ngFor="let question of questionOptions; let i = index">
             <div *ngIf="question.options[0]">
                 <p>{{question.question }}</p>

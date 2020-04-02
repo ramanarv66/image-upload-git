@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoginService } from '../login.service';
+import { SharedService } from '../shared/shared.service';
 
 @Component({
   selector: 'app-logout',
@@ -8,14 +9,24 @@ import { LoginService } from '../login.service';
 })
 export class LogoutComponent implements OnInit, OnDestroy {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private sharedService: SharedService) { }
 
   ngOnInit() {
+    if (this.sharedService.noQuestionsFound) {
+      this.loginService.isCandidate = false;
+      return;
+    }
+    if (this.loginService.isMphasisUserLoggedIn) {
+      this.sharedService.noQuestionsFound = false;
+    }
+    if (this.sharedService.uploadSuccess) {
+      this.sharedService.noQuestionsFound = false;
+    }
     this.loginService.isMphasisUserLoggedIn = false;
   }
   ngOnDestroy() {
 
-    console.log('ondestry called')
+    console.log('ondestry called');
   }
 
 }

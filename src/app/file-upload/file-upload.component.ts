@@ -149,6 +149,7 @@ export class FileUploadComponent implements OnInit {
     this.finalAnswers = this.getOnlyAnswers(this.onlyAnswers);
     console.log(this.finalAnswers);
     this.sharedService.setAnswersKey(this.finalAnswers);
+    this.sharedService.uploadSuccess = true;
     let questionPaperRequest = new QuestionPaperRequest();
     questionPaperRequest.questionOptions = this.questionOptions;
     this.sharedService.setQuestionOptions(this.questionOptions);

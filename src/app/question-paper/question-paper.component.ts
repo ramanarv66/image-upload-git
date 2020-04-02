@@ -32,6 +32,7 @@ export class QuestionPaperComponent implements OnInit {
     this.finalAnswers = this.sharedService.getAnswerKey();
     if (this.questionOptions.length === 0) {
       this.paperUpload = true;
+      this.sharedService.noQuestionsFound = true;
     }
   }
 
