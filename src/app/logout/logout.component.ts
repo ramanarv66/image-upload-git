@@ -12,6 +12,7 @@ export class LogoutComponent implements OnInit, OnDestroy {
   constructor(private loginService: LoginService, private sharedService: SharedService) { }
 
   ngOnInit() {
+    this.loginService.isMphasisUserLoggedIn = false;
     if (this.sharedService.noQuestionsFound) {
       this.loginService.isCandidate = false;
       return;
@@ -22,7 +23,7 @@ export class LogoutComponent implements OnInit, OnDestroy {
     if (this.sharedService.uploadSuccess) {
       this.sharedService.noQuestionsFound = false;
     }
-    this.loginService.isMphasisUserLoggedIn = false;
+
   }
   ngOnDestroy() {
 
