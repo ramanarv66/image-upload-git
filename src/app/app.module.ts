@@ -14,8 +14,8 @@ import { AboutComponent } from './about/about.component';
 import { CandidateComponent } from './candidate/candidate.component';
 import { TestComponent } from './test/test.component';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -29,13 +29,15 @@ import { HttpClientModule } from '@angular/common/http';
     ScoresComponent,
     AboutComponent,
     CandidateComponent,
-    TestComponent
+    JwPaginationComponent,
+    TestComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, NgxPaginationModule,
     HttpClientModule
   ],
   providers: [],

@@ -68,9 +68,7 @@ export class FileUploadComponent implements OnInit {
   processQuestions(fileContent: any): any {
     console.log(fileContent);
   }
-  revalidate(): void {
 
-  }
 
   divideOptions(element: string): string[] {
     let i = 0;
@@ -171,13 +169,7 @@ export class FileUploadComponent implements OnInit {
   }
 
 
-  test1() {
-    // this.http.get('http://localhost:8081/upload/get-questions').subscribe((resp: QuestionPaperResponse) => {
-    //   console.log(resp.questionPaperContent);
 
-    // });
-
-  }
 
   divideArray(arr: any[], size: number): any[] {
     let index = 0;
@@ -191,35 +183,5 @@ export class FileUploadComponent implements OnInit {
     this.questionAnswersMap.set(val.target.id, val.target.value);
   }
 
-  validateAnswers(): void {
-    if (this.userAnswers.length !== this.finalAnswers.length) {
-      console.log('valid')
-    }
 
-    for (const key of this.questionAnswersMap.keys()) {
-      console.log(key)
-    }
-    for (const value of this.questionAnswersMap.values()) {
-      this.userAnswers.push(value.substr(0, 1));
-      // console.log(value)
-    }
-    let count = 0;
-    for (let index = 0; index < this.userAnswers.length; index++) {
-
-      if (this.userAnswers[index] === this.finalAnswers[index]) {
-        console.log(this.userAnswers[index]);
-        console.log(this.finalAnswers[index]);
-        count++;
-      }
-      this.score = count;
-
-    }
-    if (this.score >= 0) {
-      this.message = ' Thanks for taking test, Please wait.. You will get the result soon !!!!';
-
-    }
-    console.log('Corrected answers are ' + count);
-    this.userAnswers = [];
-
-  }
 }

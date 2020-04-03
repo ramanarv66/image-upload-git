@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <div class="container">
-    <input type="file" (change)="onChange($event.target.files)" />
+    <input type="file" class="btn btn-primary" (change)="onChange($event.target.files)" />
 
     <div>
       <h3>File Content</h3>
@@ -9,15 +9,9 @@
 
     <button type="button" class="btn btn-primary" (click)="formate()">
       PreviewQuestions</button>&nbsp;
-    <button type="button" class="btn btn-info" (click)="revalidate()">
-      ReValidate</button>&nbsp;
-    <button type="button" class="btn btn-success" (click)="test1()">
-      Test
-    </button>
     <div *ngIf="eachQuestions" class="form-group">
-      <label class="col-md-3 col-form-label">Choose Correct Option</label>
-      <div *ngFor="let question of questionOptions; let i = index">
-        <div *ngIf="question.options[0]">
+      <div *ngFor="let question of questionOptions}">
+        <div *ngIf=" question.options[0]">
           <p>{{question.question }}</p>
           <input type="radio" #optin1 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
             [value]="question.options[0]" id="{{question.id}}">
@@ -34,7 +28,6 @@
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-success" (click)="validateAnswers()">Validate</button>
     <p *ngIf="message" class="text text-success">{{message}}</p>
     <p *ngIf="showError" class="text text-danger">Please Upload questions</p>
   </div>

@@ -26,6 +26,8 @@ export class QuestionPaperComponent implements OnInit {
   showError: boolean;
   paperUpload: boolean;
   message: string;
+  items = [];
+  pageOfItems: Array<any>;
   constructor(private sharedService: SharedService) {
     console.log(this.sharedService.getQuestionOptions());
     this.questionOptions = this.sharedService.getQuestionOptions();
@@ -37,6 +39,11 @@ export class QuestionPaperComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
   }
 
   divideOptions(element: string): string[] {

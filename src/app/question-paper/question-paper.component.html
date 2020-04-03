@@ -9,7 +9,7 @@
 
     <div *ngIf="eachQuestions" class="form-group">
         <p class="text text-danger">Choose Correct Option</p>
-        <div *ngFor="let question of questionOptions; let i = index">
+        <div *ngFor="let question of questionOptions| paginate:{itemsPerPage: 5, currentPage:p}">
             <div *ngIf="question.options[0]">
                 <p>{{question.question }}</p>
                 <input type="radio" #optin1 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
@@ -28,5 +28,8 @@
         </div>
     </div>
     <button type="button" class="btn btn-success" (click)="validateAnswers()">Validate</button>
+    <div class="card-footer pb-0 pt-3">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
 
 </div>
