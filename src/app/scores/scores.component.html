@@ -1,3 +1,5 @@
 <div class="container">
-    <p class="text text-primary"> Scores Page is in construction</p>
+    <!-- <p class="text text-primary"> Scores Page is in construction</p> -->
+    <p *ngIf="this.result" class="text text-success">Candidata Name:{{this.loginService.candidateUserName}} and score:
+        {{this.result}}</p>
 </div>

@@ -9,6 +9,8 @@ export class LoginService {
   isMphasisUserLoggedIn: boolean;
   loginBtnSubject = new BehaviorSubject('');
   btnLabel = 'Login';
+  candidateUserName: string;
+  mphaisUserName: string;
   isCandidate: boolean;
   constructor() { }
 

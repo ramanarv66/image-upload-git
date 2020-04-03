@@ -25,6 +25,7 @@ export class QuestionPaperComponent implements OnInit {
   questionOptions: QuestionOptions[] = [];
   showError: boolean;
   paperUpload: boolean;
+  isSubmitted: boolean;
   message: string;
   items = [];
   pageOfItems: Array<any>;
@@ -136,6 +137,8 @@ export class QuestionPaperComponent implements OnInit {
   }
 
   validateAnswers(): void {
+    this.isSubmitted = true;
+
     if (this.userAnswers.length !== this.finalAnswers.length) {
     }
 
@@ -161,6 +164,8 @@ export class QuestionPaperComponent implements OnInit {
 
     }
     console.log('Corrected answers are ' + count);
+    this.sharedService.finalResult = count;
+    this.sharedService.setFinalResultSubjectValue(count);
     this.userAnswers = [];
 
   }

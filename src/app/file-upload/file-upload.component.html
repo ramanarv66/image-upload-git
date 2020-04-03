@@ -10,7 +10,7 @@
     <button type="button" class="btn btn-primary" (click)="formate()">
       PreviewQuestions</button>&nbsp;
     <div *ngIf="eachQuestions" class="form-group">
-      <div *ngFor="let question of questionOptions}">
+      <div *ngFor="let question of questionOptions">
         <div *ngIf=" question.options[0]">
           <p>{{question.question }}</p>
           <input type="radio" #optin1 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"

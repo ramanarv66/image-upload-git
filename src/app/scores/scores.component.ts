@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../shared/shared.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-scores',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScoresComponent implements OnInit {
 
-  constructor() { }
+  result: number;
+  constructor(private sharedService: SharedService, private loginService: LoginService) { }
 
   ngOnInit() {
+    this.sharedService.getFinalResultSubjectValue().subscribe((resp: number) => {
+      this.result = resp;
+    });
   }
 
 }
