@@ -1,1 +1,7 @@
-<button type="button" class="btn btn-primary" (click)="mapTest()">mapTest()</button>
+<div class="container">
+    <!-- <p class="col-md-1 alert alert-danger">{{time}}</p>
+    <p class="col-md-1 alert alert-primary">{{msg}}</p> -->
+    <p class="col-md-1 alert alert-info" *ngIf="msg1">{{finalMsg}}</p>
+    <p *ngIf="msg2 && !msg1" class="col-md-1 alert alert-info">{{finalMsg2}}</p>
+
+</div>

@@ -1,5 +1,40 @@
 <div class="container">
     <!-- <p class="text text-primary"> Scores Page is in construction</p> -->
+    <p class="text text-primary">Latest Candidate score</p>
     <p *ngIf="this.result" class="text text-success">Candidata Name:{{this.loginService.candidateUserName}} and score:
         {{this.result}}</p>
+</div>
+
+<div class="container">
+    <h4>List of cadidates scores</h4>
+    <div *ngFor="let score of scoreList;let i=index">
+        <p>{{score.email}}</p>
+        <p>{{score.score}}</p>
+
+    </div>
+</div>
+<div class="container">
+    <!-- <ag-grid-angular style="width: 500px; height: 500px;" class="ag-theme-alpine" [rowData]="rowData"
+        [columnDefs]="columnDefs">
+    </ag-grid-angular> -->
+    <div class="row col-md-6">
+
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="bg-primary">
+                    <th scope="col">Id</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let score of scoreList;let i=index">
+                    <td>{{score.id}}</td>
+                    <td>{{score.email}}</td>
+                    <td>{{score.score}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

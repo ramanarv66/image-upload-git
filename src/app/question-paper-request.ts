@@ -4,5 +4,5 @@ export class QuestionPaperRequest {
     // questionPaperContent: string;
     // versionId: number;
     // uploadedBy: string;
-    questionOptions: QuestionOptions[] = []
+    questionOptions: QuestionOptions[] = [];
 }

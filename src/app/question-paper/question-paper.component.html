@@ -37,6 +37,11 @@
                     <pagination-controls (pageChange)="p=$event"></pagination-controls>
                 </div>
             </div>
+            <div class="col-md-6">
+                <p class="alert alert-info" *ngIf="msg1">{{finalMsg}}</p>
+                <p *ngIf="msg2 && !msg1" class="alert alert-info"><strong>{{finalMsg2}}</strong></p>
+
+            </div>
 
         </div>
     </div>

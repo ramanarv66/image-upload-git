@@ -16,11 +16,16 @@ import { TestComponent } from './test/test.component';
 import { HttpClientModule } from '@angular/common/http';
 import { JwPaginationComponent } from 'jw-angular-pagination';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { WaringModalComponent } from '../app/waring-modal/waring-modal.component';
+import { Modal1Component } from './modal1/modal1.component';
+import { MymodalComponent } from './mymodal/mymodal.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    WaringModalComponent,
     FileUploadComponent,
     HeaderComponent,
     LoginComponent,
@@ -31,6 +36,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CandidateComponent,
     JwPaginationComponent,
     TestComponent,
+    Modal1Component,
+    MymodalComponent,
 
   ],
   imports: [
@@ -38,7 +45,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule, NgxPaginationModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalModule.forRoot()
+
+  ],
+  entryComponents: [
+    Modal1Component
   ],
   providers: [],
   bootstrap: [AppComponent]

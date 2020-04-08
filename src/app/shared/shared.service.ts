@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { QuestionOptions } from '../model/question-options';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { ScoreListResponse } from '../model/score-response';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,9 @@ export class SharedService {
   noQuestionsFound: boolean;
   uploadSuccess: boolean;
   finalResult: number;
+  responseFromModal = new BehaviorSubject<any>('');
   finalResultSubject = new BehaviorSubject<number>(0);
-  constructor() { }
+  constructor(private http: HttpClient) { }
   setQuestionOptions(quesOptions: QuestionOptions[]) {
     this.questionOptions = quesOptions;
 
@@ -34,4 +37,11 @@ export class SharedService {
   getFinalResultSubjectValue(): Observable<number> {
     return this.finalResultSubject.asObservable();
   }
+  setResponse(resp: any): void {
+    this.responseFromModal.next(resp);
+  }
+  getResponse(): Observable<any> {
+    return this.responseFromModal.asObservable();
+  }
+
 }

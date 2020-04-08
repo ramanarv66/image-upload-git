@@ -144,20 +144,27 @@ export class FileUploadComponent implements OnInit {
     }
     this.questionOptions = questionsFinal;
     console.log(this.questionOptions);
+    // this code is to get the answers
     this.finalAnswers = this.getOnlyAnswers(this.onlyAnswers);
     console.log(this.finalAnswers);
     this.sharedService.setAnswersKey(this.finalAnswers);
     this.sharedService.uploadSuccess = true;
-    let questionPaperRequest = new QuestionPaperRequest();
+    const questionPaperRequest = new QuestionPaperRequest();
     questionPaperRequest.questionOptions = this.questionOptions;
     this.sharedService.setQuestionOptions(this.questionOptions);
     localStorage.setItem('questions', '' + this.questions);
-    // questionPaperRequest.versionId = 22;
-    // questionPaperRequest.questionPaperContent = '' + this.questions;
-    // questionPaperRequest.questionPaperContent = questionPaperRequest.questionPaperContent.replace(',', ' ');
-    // console.log(questionPaperRequest.questionPaperContent.replace(',', ' '));
-    // questionPaperRequest.uploadedBy = 'Ram'
-    ;
+    questionPaperRequest.questionOptions = this.questionOptions;
+    console.log(questionPaperRequest);
+    this.http.post('http://localhost:8080/upload/save-questions', questionPaperRequest).
+      subscribe((resp: boolean) => {
+        console.log(resp);
+      }, () => { })
+      // questionPaperRequest.versionId = 22;
+      // questionPaperRequest.questionPaperContent = '' + this.questions;
+      // questionPaperRequest.questionPaperContent = questionPaperRequest.questionPaperContent.replace(',', ' ');
+      // console.log(questionPaperRequest.questionPaperContent.replace(',', ' '));
+      // questionPaperRequest.uploadedBy = 'Ram'
+      ;
     // this.http.post('http://localhost:8081/upload/save-questions', questionPaperRequest).subscribe((resp: boolean) => {
     //   console.log(resp);
     // }, () => { })

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
 import { LoginService } from '../login.service';
+import { ScoreService } from '../score.service';
+import { ScoreListResponse, ScoreResponse } from '../model/score-response';
 
 @Component({
   selector: 'app-scores',
@@ -10,11 +12,25 @@ import { LoginService } from '../login.service';
 export class ScoresComponent implements OnInit {
 
   result: number;
-  constructor(private sharedService: SharedService, private loginService: LoginService) { }
+  scores: ScoreListResponse;
+  scoreList: ScoreResponse[] = [];
+  rowData: ScoreResponse[] = [];
+  columnDefs = [
+    { headerName: 'Email', field: 'email' },
+    { headerName: 'Score', field: 'score' },
+    { headerName: 'id', field: 'id' }
+  ];
+
+  constructor(private sharedService: SharedService, private scoreService: ScoreService, private loginService: LoginService) { }
 
   ngOnInit() {
     this.sharedService.getFinalResultSubjectValue().subscribe((resp: number) => {
       this.result = resp;
+    });
+    this.scoreService.getScores().subscribe((resp: ScoreListResponse) => {
+      this.scoreList = resp.scoresList;
+      this.rowData = resp.scoresList;
+      console.log(this.scoreList);
     });
   }
 

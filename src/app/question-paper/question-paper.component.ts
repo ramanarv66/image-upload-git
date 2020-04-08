@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionOptions } from '../model/question-options';
 import { SharedService } from '../shared/shared.service';
+import { ScoreRequest } from '../model/score-request';
+import { LoginService } from '../login.service';
+import { HttpClient } from '@angular/common/http';
+import { ScoreService } from '../score.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Modal1Component } from '../modal1/modal1.component';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-question-paper',
@@ -29,7 +36,25 @@ export class QuestionPaperComponent implements OnInit {
   message: string;
   items = [];
   pageOfItems: Array<any>;
-  constructor(private sharedService: SharedService) {
+  // Variables for timer
+
+  time: number;
+  msg: string;
+  finalMsg: string;
+  finalMsg2: string;
+  minutes: number;
+  minutes_: number;
+  hours_: number;
+  msg1: boolean;
+  msg2: boolean;
+  bsModalRef: BsModalRef;
+  CurrentTime: any;
+  counter: number;
+
+  // Variables ended
+  constructor(private sharedService: SharedService, private modalService: BsModalService,
+    private scoreService: ScoreService,
+    private loginService: LoginService) {
     console.log(this.sharedService.getQuestionOptions());
     this.questionOptions = this.sharedService.getQuestionOptions();
     this.finalAnswers = this.sharedService.getAnswerKey();
@@ -39,7 +64,10 @@ export class QuestionPaperComponent implements OnInit {
     }
   }
 
+
   ngOnInit() {
+
+    this.createTimer();
   }
 
   onChangePage(pageOfItems: Array<any>) {
@@ -143,7 +171,7 @@ export class QuestionPaperComponent implements OnInit {
     }
 
     for (const key of this.questionAnswersMap.keys()) {
-      console.log(key)
+      console.log(key);
     }
     for (const value of this.questionAnswersMap.values()) {
       this.userAnswers.push(value.substr(0, 1));
@@ -166,8 +194,72 @@ export class QuestionPaperComponent implements OnInit {
     console.log('Corrected answers are ' + count);
     this.sharedService.finalResult = count;
     this.sharedService.setFinalResultSubjectValue(count);
+    const scoreRequest = new ScoreRequest();
+    scoreRequest.email = this.loginService.candidateUserName;
+    scoreRequest.score = count;
+    this.scoreService.saveScores(scoreRequest);
     this.userAnswers = [];
 
   }
+  // this method opens a modal
+
+  openModalWithComponent() {
+    const initialState = {
+      // list: [
+      //   'Open a modal with component',
+      //   'Pass your data',
+      //   'Do something else',
+      //   '...'
+      // ],
+      // title: 'Modal with component',
+      // name: 'Ramana'
+      title: 'Time Up Modal',
+      bodyMsg: 'Your time is Up!!! Questions will be auto submitted'
+    };
+    this.bsModalRef = this.modalService.show(Modal1Component, { initialState });
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
+
+  // this method creates a timer
+  createTimer(): void {
+
+    this.minutes_ = new Date().getMinutes();
+    this.hours_ = new Date().getHours();
+
+    this.counter = 0;
+    this.msg1 = true;
+    const myObservable = timer(1000, 1000);
+    myObservable.subscribe(x => {
+      this.time = x;
+      this.finalMsg = 'You left with ' + 45 + ' minutes';
+      if (this.time !== 0) {
+        let a = this.time % 5;
+
+        if (a === 0) {
+
+          let b = 45 - this.counter;
+          this.finalMsg2 = 'You left with ' + b + ' minutes';
+          this.msg2 = true;
+          this.msg1 = false;
+          if (b === 43) {
+            this.isSubmitted = true;
+            this.openModalWithComponent();
+          }
+          this.counter++;
+
+        }
+        this.msg2 = true;
+      }
+
+      if (this.time === 60) {
+        this.minutes = this.time % 60;
+      }
+
+      this.msg = `You have completed ${this.hours_ + ':' + this.minutes_ + ':' + this.minutes} minutes`;
+    });
+
+  }
+
 
 }
