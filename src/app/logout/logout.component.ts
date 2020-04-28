@@ -9,7 +9,7 @@ import { SharedService } from '../shared/shared.service';
 })
 export class LogoutComponent implements OnInit, OnDestroy {
 
-  constructor(private loginService: LoginService, private sharedService: SharedService) { }
+  constructor(public loginService: LoginService, public sharedService: SharedService) { }
 
   ngOnInit() {
     this.loginService.isMphasisUserLoggedIn = false;

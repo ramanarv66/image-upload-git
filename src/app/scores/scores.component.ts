@@ -21,7 +21,7 @@ export class ScoresComponent implements OnInit {
     { headerName: 'id', field: 'id' }
   ];
 
-  constructor(private sharedService: SharedService, private scoreService: ScoreService, private loginService: LoginService) { }
+  constructor(public sharedService: SharedService, public scoreService: ScoreService, public loginService: LoginService) { }
 
   ngOnInit() {
     this.sharedService.getFinalResultSubjectValue().subscribe((resp: number) => {

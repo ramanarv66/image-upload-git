@@ -15,7 +15,7 @@ import { SharedService } from '../shared/shared.service';
 export class FileUploadComponent implements OnInit {
 
   fileContent: any = null;
-  questionAnswersMap = new Map();
+  //questionAnswersMap = new Map();
   temp: any;
   score: number;
   selected: string;
@@ -187,7 +187,7 @@ export class FileUploadComponent implements OnInit {
     return this.chunkedArray;
   }
   optionValue(val: any) {
-    this.questionAnswersMap.set(val.target.id, val.target.value);
+    this.loginService.questionAnswersMap.set(val.target.id, val.target.value);
   }
 
 

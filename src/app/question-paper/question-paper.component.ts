@@ -35,6 +35,7 @@ export class QuestionPaperComponent implements OnInit {
   isSubmitted: boolean;
   message: string;
   items = [];
+  paper: any;
   pageOfItems: Array<any>;
   // Variables for timer
 
@@ -227,22 +228,22 @@ export class QuestionPaperComponent implements OnInit {
     this.minutes_ = new Date().getMinutes();
     this.hours_ = new Date().getHours();
 
-    this.counter = 0;
+    this.counter = 1;
     this.msg1 = true;
     const myObservable = timer(1000, 1000);
     myObservable.subscribe(x => {
       this.time = x;
-      this.finalMsg = 'You left with ' + 45 + ' minutes';
+      this.finalMsg = 'You left with ' + 60 + ' minutes';
       if (this.time !== 0) {
-        let a = this.time % 5;
+        let a = this.time % 60;
 
         if (a === 0) {
 
-          let b = 45 - this.counter;
+          let b = 60 - this.counter;
           this.finalMsg2 = 'You left with ' + b + ' minutes';
           this.msg2 = true;
           this.msg1 = false;
-          if (b === 43) {
+          if (b === 60) {
             this.isSubmitted = true;
             this.openModalWithComponent();
           }
