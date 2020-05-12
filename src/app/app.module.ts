@@ -20,6 +20,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { WaringModalComponent } from '../app/waring-modal/waring-modal.component';
 import { Modal1Component } from './modal1/modal1.component';
 import { MymodalComponent } from './mymodal/mymodal.component';
+import { RightClickDirective } from './directives/right-click.directive';
+import { KeyDownDirective } from './directives/key-down.directive';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { MymodalComponent } from './mymodal/mymodal.component';
     TestComponent,
     Modal1Component,
     MymodalComponent,
+    RightClickDirective,
+    KeyDownDirective,
 
   ],
   imports: [

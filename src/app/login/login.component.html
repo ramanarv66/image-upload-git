@@ -4,8 +4,8 @@
         <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="form-group">
                 <label class="form-control-label">Email</label>
-                <input type="email" class="form-control" id="email" value="ram@mphasis.com" name="email" email="true"
-                    formControlName='email'>
+                <input (document:keydown.control.t)="doSomething()" type="email" class="form-control" id="email"
+                    value="ram@mphasis.com" name="email" email="true" formControlName='email'>
                 <div class="text text-danger"
                     *ngIf="this.loginForm.controls.email.invalid && this.loginForm.controls.email.touched">
                     <small> Enter
@@ -13,7 +13,7 @@
                         Email</small></div>
             </div>
             <div class="form-group ">
-                <label class="form-control-label">PassWord</label>
+                <label class="form-control-label" appKeyDown>PassWord</label>
                 <input type="password" class="form-control" value="abcde" id="password" name="password" #password1
                     required formControlName='password'>
                 <div *ngIf="this.loginForm.controls.password.invalid && this.loginForm.controls.password.touched"
@@ -30,6 +30,9 @@
         <p *ngIf="this.result" class="text text-success">Candidata score: {{this.result}}</p>
     </div>
 
+</div>
+<div class="container">
+    <button type="button" class="btn btn-warning" (click)="testResult()">Test</button>
 </div>
 
 <!-- <app-test></app-test>

@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!this.isSubmitted">
+<div class="container" *ngIf="!this.isSubmitted" appRightClick>
     <marquee *ngIf="this.questionOptions.length === 0" direction="right"
         [ngStyle]="{'color':'red','text-align':'center'}">
         Question Paper not uploaded yet... <b>Please Contact HR</b></marquee>
