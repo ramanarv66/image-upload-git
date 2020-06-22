@@ -1,0 +1,14 @@
+.bg-color {
+  background-color: rgb(9, 9, 65);
+  color: white;
+}
+.myform {
+  margin: 0px 0px 0px 400px;
+}
+button {
+  background: transparent;
+}
+
+.initialClass {
+  margin: 0px 0px 0px 750px;
+}

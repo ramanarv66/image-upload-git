@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
     console.log('user name ' + email)
     if (email.indexOf('mphasis.com') > 0) {
       console.log(email);
+        this.loginService.successLogin = true;
       this.router.navigate(['upload']);
       this.loginService.mphaisUserName = email;
       this.loginService.isMphasisUserLoggedIn = true;
@@ -64,6 +65,7 @@ export class LoginComponent implements OnInit {
         this.result = resp;
       });
     } else {
+
       this.router.navigate(['question-paper']);
       this.loginService.candidateUserName = email;
       this.loginService.isMphasisUserLoggedIn = false;

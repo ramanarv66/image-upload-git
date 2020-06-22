@@ -7,6 +7,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LoginService {
 
   isMphasisUserLoggedIn: boolean;
+    successLogin: boolean;
+
   questionAnswersMap = new Map();
   loginBtnSubject = new BehaviorSubject('');
   btnLabel = 'Login';

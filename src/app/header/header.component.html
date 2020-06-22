@@ -1,9 +1,6 @@
+<!--
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-collapse navbar-dark bg-primary">
-        <a class="navbar-brand" href="www.google.com">Logo
-
-            <!-- <img src="assets/mphasis-logo.png" height="10%" width="10%"> -->
-        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
             aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" wfd-id="651">
             <span class="navbar-toggler-icon" wfd-id="466"></span>
@@ -34,3 +31,37 @@
         </div>
     </nav>
 </div>
+-->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-color">
+  <a class="navbar-brand" href="#">
+    <img src="assets/scheduling.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    HaCkeRank</a>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <ul class="navbar-nav">
+
+      <li class="nav-item active">
+        <a class="nav-link" routerLinkActive="active"  routerLink="">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" *ngIf="this.loginService.isMphasisUserLoggedIn"
+           routerLink="scores">Scores</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" *ngIf="this.loginService.isMphasisUserLoggedIn"
+           routerLink="candidate">Candidate</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" *ngIf="this.loginService.isMphasisUserLoggedIn"
+           routerLink="about">About</a>
+      </li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0" [ngClass]="{myform: loginService.successLogin, initialClass:!loginService.successLogin}">
+      <button class="btn btn-secondary" (click)="login()">{{btnName}}</button> &nbsp;
+      <button class="btn btn-secondary" (click)="register()">Register</button>
+    </form>
+
+  </div>
+</nav>

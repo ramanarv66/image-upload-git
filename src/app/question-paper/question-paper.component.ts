@@ -58,6 +58,7 @@ export class QuestionPaperComponent implements OnInit {
     private loginService: LoginService) {
     console.log(this.sharedService.getQuestionOptions());
     this.questionOptions = this.sharedService.getQuestionOptions();
+    console.log(this.questionOptions)
     this.finalAnswers = this.sharedService.getAnswerKey();
     if (this.questionOptions.length === 0) {
       this.paperUpload = true;
