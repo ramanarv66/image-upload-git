@@ -29,4 +29,7 @@ export class HeaderComponent implements OnInit {
 
     }
   }
+  register(){
+    this.router.navigate(['register']);
+  }
 }

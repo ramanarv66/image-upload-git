@@ -23,7 +23,7 @@ export class LogoutComponent implements OnInit, OnDestroy {
     if (this.sharedService.uploadSuccess) {
       this.sharedService.noQuestionsFound = false;
     }
-
+    this.loginService.successLogin = false;
   }
   ngOnDestroy() {
 

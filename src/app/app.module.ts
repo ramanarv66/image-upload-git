@@ -22,6 +22,7 @@ import { Modal1Component } from './modal1/modal1.component';
 import { MymodalComponent } from './mymodal/mymodal.component';
 import { RightClickDirective } from './directives/right-click.directive';
 import { KeyDownDirective } from './directives/key-down.directive';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { KeyDownDirective } from './directives/key-down.directive';
     MymodalComponent,
     RightClickDirective,
     KeyDownDirective,
+    RegisterComponent,
 
   ],
   imports: [
