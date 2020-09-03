@@ -60,7 +60,7 @@
     </ul>
     <form class="form-inline my-2 my-lg-0" [ngClass]="{myform: loginService.successLogin, initialClass:!loginService.successLogin}">
       <button class="btn btn-secondary" (click)="login()">{{btnName}}</button> &nbsp;
-      <button class="btn btn-secondary" (click)="register()">Register</button>
+      <button class="btn btn-secondary" (click)="register()" *ngIf="!loginService.successLogin">Register</button>
     </form>
 
   </div>
