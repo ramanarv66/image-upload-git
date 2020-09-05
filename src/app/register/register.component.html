@@ -1,18 +1,31 @@
 <div class="container">
   <br>
   <div class="row">
-    <h6 style="color: blue"> SignUp With Few Details For Quick Login and Change them later if required</h6>
+    <h6 style="color: blue"> SignUp With Below Details For Quick Login and Change them later if required</h6>
   </div>
   <br>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <form #registerForm="ngForm">
+        <div class="form-group">
+          <label for="firstname">Enter FirstName</label>
+          <input type="text" class="form-control" #firstname="ngModel" #firstname1 name="firstname"
+                 [(ngModel)]="register.firstname" required><span style="color: red">*</span>
+          <small *ngIf="firstname.invalid && firstname.touched" class="text text-danger">First name required</small>
+        </div>
+        <div class="form-group">
+          <label for="lastname">LastName</label>
+          <input type="text" class="form-control" #lastname="ngModel" #lastname1 name="lastname"
+                 [(ngModel)]="register.lastname" required>
+<!--          <small *ngIf="lastname.invalid && lastname.touched" class="text text-danger">Last name required</small>-->
+        </div>
+
         <div class="form-group">
           <label for="username">Create UserName</label>
           <input type="text" class="form-control" #username="ngModel" #username1 name="username"
-                 [(ngModel)]="register.username" required>
+                 [(ngModel)]="register.username" required><span style="color: red">*</span>
 
-          <div *ngIf="username.invalid && username.touched" class="text text-danger">username required</div>
+          <small *ngIf="username.invalid && username.touched" class="text text-danger">Username required</small>
         </div>
         <!-- {{registerForm.value|json}}
         {{register|json}} -->
@@ -20,24 +33,25 @@
         <div class="form-group">
           <label for="mail">Enter Mail</label>
           <input type="email" class="form-control" #mail="ngModel" #mail1 name="mail"
-                 [(ngModel)]="register.email" required>
-          <div *ngIf="mail.invalid && mail.touched" class="text text-danger">mail required</div>
+                 [(ngModel)]="register.email" required><span style="color: red">*</span>
+          <small *ngIf="mail.invalid && mail.touched" class="text text-danger">Email required</small>
         </div>
         <!-- {{mail1.className}} -->
         <div class="form-group">
           <label for="password">Password</label>
           <input type="text" class="form-control" name="password" [(ngModel)]="register.password"
-                 #password="ngModel" required>
-          <div *ngIf="password.invalid && password.touched" class="text-danger">password required</div>
+                 #password="ngModel" required><span style="color: red">*</span>
+          <small *ngIf="password.invalid && password.touched" class="text-danger">Password required</small>
         </div>
         <div class="form-group">
           <label for="confirmpassword">Confirm Password</label>
           <input type="text" class="form-control" name="confirmpassword" required
-                 [(ngModel)]="register.confirmpassword" #confirmpassword="ngModel" (change)="validatePassword()">
-          <div *ngIf="confirmpassword.invalid && confirmpassword.touched" class="text text-danger">Please
-            confirm same password</div>
-          <div *ngIf="showPassWordWarn" class="alert alert-danger">Password and Confirm Password should match
-          </div>
+                 [(ngModel)]="register.confirmpassword" #confirmpassword="ngModel" (change)="validatePassword()"><span style="color: red">*</span>
+          <small *ngIf="confirmpassword.invalid && confirmpassword.touched" class="text text-danger">Please Enter
+            confirm password
+          </small>
+          <small *ngIf="showPassWordWarn" class="alert alert-danger">Password and Confirm Password should match
+          </small>
         </div>
         <!-- Gender-->
 
@@ -48,10 +62,23 @@
             <input type="radio" value="female" name="gender" [(ngModel)]="register.gender"> Female
           </div>
         </div>
+        <div class="form-group">
+          <label for="Phone">PhoneNumber</label>
+          <input type="text" class="form-control" #phone="ngModel" #phone1 name="phone"
+                 [(ngModel)]="register.phone" required><span style="color: red">*</span>
+          <small *ngIf="phone.invalid && phone.touched" class="text text-danger">Phone number required</small>
+        </div>
+        <div class="form-group">
+          <label for="location">Preferred work location</label>
+          <input type="text" class="form-control" #city="ngModel" #city1 name="city"
+                 [(ngModel)]="register.city" required><span style="color: red">*</span>
+          <small *ngIf="city.invalid && city.touched" class="text text-danger">Work Location required</small>
+        </div>
 
         <div class="form-group">
           <button class="btn btn-primary" (click)="signIn();registerForm.reset()"
-                  [disabled]="registerForm.invalid">SignUp</button> &nbsp;
+                  [disabled]="registerForm.invalid">SignUp
+          </button> &nbsp;
           <button class="btn btn-danger" (click)="cancel()">Cancel</button> &nbsp;
         </div>
 
@@ -63,7 +90,8 @@
         </div>
         <div class="form-group">
           <div *ngIf="showSuccessMsg" class="alert alert-success">Registration Successful!!! Go to Login and
-            Browse</div>
+            Browse
+          </div>
         </div>
       </form>
     </div>

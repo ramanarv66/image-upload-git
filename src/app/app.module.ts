@@ -23,8 +23,11 @@ import { MymodalComponent } from './mymodal/mymodal.component';
 import { RightClickDirective } from './directives/right-click.directive';
 import { KeyDownDirective } from './directives/key-down.directive';
 import { RegisterComponent } from './register/register.component';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {  MatInputModule } from '@angular/material';
+import {MatIconModule} from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,14 +48,21 @@ import { RegisterComponent } from './register/register.component';
     KeyDownDirective,
     RegisterComponent,
 
+
+
   ],
   imports: [
     BrowserModule,
+    MatSnackBarModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule, NgxPaginationModule,
     HttpClientModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule
 
   ],
   entryComponents: [

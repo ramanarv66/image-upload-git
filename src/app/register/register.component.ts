@@ -4,6 +4,7 @@ import {FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {RegisterService} from "./register.service";
 import {RegisterResponse} from "../model/register-response";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   showSuccessMsg: boolean;
   showSpinner: boolean = false;
   registerForm: FormGroup;
-  constructor(public registerService: RegisterService) { }
+  constructor(public registerService: RegisterService, public  snackBar: MatSnackBar,) { }
 
   ngOnInit() {
   }
@@ -33,11 +34,12 @@ export class RegisterComponent implements OnInit {
       this.registerService.register(this.register).subscribe((resp: RegisterResponse) => {
         if (resp) {
           console.log("Response finally Got " + resp)
-          this.showSuccessMsg = true;
+          // this.showSuccessMsg = true;
+          this.showSnackBar();
+          this.showSpinner = false;
         }
 
       }, () => {
-        this.showSuccessMsg = true;
         this.showSpinner = false;
       });
     }
@@ -55,6 +57,13 @@ export class RegisterComponent implements OnInit {
   }
   cancel(): void {
     this.formValues.reset();
-    this.showSuccessMsg = false;
+  }
+  showSnackBar() {
+    this.snackBar.open('Email Has been Sent, Please check timings', 'close', {
+      duration: 5000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['mat-toolbar', 'mat-primary']
+    });
   }
 }
