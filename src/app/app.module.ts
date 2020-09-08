@@ -50,6 +50,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RightClickDirective,
     KeyDownDirective,
     RegisterComponent,
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -62,10 +65,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule, MatButtonToggleModule
+    MatInputModule
 
   ],
   entryComponents: [
