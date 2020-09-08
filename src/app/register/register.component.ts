@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
     this.formValues.reset();
   }
   showSnackBar() {
-    this.snackBar.open('Email Has been Sent, Please check timings', 'close', {
+    this.snackBar.open('Registration Successfull, Please check Email', 'close', {
       duration: 5000,
       horizontalPosition: 'right',
       verticalPosition: 'top',

@@ -25,9 +25,12 @@ import { KeyDownDirective } from './directives/key-down.directive';
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {  MatInputModule } from '@angular/material';
+import {MatButtonToggleModule, MatInputModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,9 +50,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RightClickDirective,
     KeyDownDirective,
     RegisterComponent,
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -62,7 +62,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule, MatButtonToggleModule
 
   ],
   entryComponents: [

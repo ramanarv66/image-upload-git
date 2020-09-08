@@ -3,6 +3,8 @@ import { QuestionOptions } from '../model/question-options';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { ScoreListResponse } from '../model/score-response';
 import { HttpClient } from '@angular/common/http';
+import {CandidateInterface} from "../model/candidate-interface";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +44,9 @@ export class SharedService {
   }
   getResponse(): Observable<any> {
     return this.responseFromModal.asObservable();
+  }
+  getCandidatesList():Observable<CandidateInterface[]>{
+    return this.http.get<CandidateInterface[]>(environment.candidateListUrl);
   }
 
 

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  registerUrl: 'http://localhost:9898/regCand'
+  registerUrl: 'http://localhost:9898/regCand',
+  candidateListUrl: 'http://localhost:9898/getCandidatesList'
 };
 
 /*
