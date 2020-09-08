@@ -59,14 +59,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSnackBarModule,
     AppRoutingModule,
     FormsModule,
+    MatSortModule,
     ReactiveFormsModule, NgxPaginationModule,
     HttpClientModule,
     ModalModule.forRoot(),
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
-
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   entryComponents: [
     Modal1Component
