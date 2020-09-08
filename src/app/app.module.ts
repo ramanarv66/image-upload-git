@@ -28,6 +28,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {  MatInputModule } from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,9 +48,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RightClickDirective,
     KeyDownDirective,
     RegisterComponent,
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -62,7 +60,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
 
   ],
   entryComponents: [
