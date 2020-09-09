@@ -18,67 +18,17 @@ export class CandidateComponent implements OnInit {
   ELEMENT_DATA: CandidateInterface[] = [];
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'phone', 'city', 'username'];
   dataSource = new MatTableDataSource<CandidateInterface>(this.ELEMENT_DATA);
-  clubs = [
-    {
-      position: 1,
-      name: "Liverpool",
-      played: 20,
-      won: 19,
-      drawn: 1,
-      lost: 0,
-      points: 58
-    },
-    {
-      position: 2,
-      name: "Leicester City",
-      played: 21,
-      won: 14,
-      drawn: 3,
-      lost: 4,
-      points: 45
-    },
-    {
-      position: 3,
-      name: "Manchester City",
-      played: 21,
-      won: 14,
-      drawn: 2,
-      lost: 5,
-      points: 44
-    },
-    {
-      position: 4,
-      name: "Chelsea",
-      played: 21,
-      won: 11,
-      drawn: 3,
-      lost: 7,
-      points: 36
-    },
-    {
-      position: 5,
-      name: "Manchester United",
-      played: 21,
-      won: 8,
-      drawn: 7,
-      lost: 6,
-      points: 31
-    }
-  ];
   constructor(private shared:SharedService) {
-
-
   }
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
     this.shared.getCandidatesList().subscribe((response: CandidateInterface[])=>{
       this.canidateData = response;
       this.ELEMENT_DATA = response;
       console.log(this.canidateData['candidateDtoList']);
       this.dataSource.data= this.ELEMENT_DATA['candidateDtoList'];
-      console.log(response);
-
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     },()=>{});
   }
   exportToExcel() {
