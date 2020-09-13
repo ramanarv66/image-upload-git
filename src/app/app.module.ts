@@ -31,6 +31,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { WelcomeComponent } from './welcome/welcome.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RightClickDirective,
     KeyDownDirective,
     RegisterComponent,
+    WelcomeComponent,
 
 
 

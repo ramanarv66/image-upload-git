@@ -24,8 +24,34 @@
 
     </ul>
     <form class="form-inline my-2 my-lg-0" [ngClass]="{myform: loginService.successLogin, initialClass:!loginService.successLogin}">
-      <button class="btn btn-secondary" (click)="login()">{{btnName}}</button> &nbsp;
-      <button class="btn btn-secondary" (click)="register()" *ngIf="!loginService.successLogin">Register</button>
+      <li><a  class="btn-signin" (click)="login()" style="
+    top: 7px;
+    right: 40px;
+    position: absolute;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#42455a,#42455a), radial-gradient(circle at top left, #fd00da,#19d7f8);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    cursor: pointer;
+    ;
+"><span>{{btnName}}</span></a></li> &nbsp;
+      <li><a class="btn-register" *ngIf="!loginService.successLogin" (click)="register()" style="
+    top: 7px;
+    right: 140px;
+    position: absolute;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#42455a,#42455a), radial-gradient(circle at top left, #fd00da,#19d7f8);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    cursor: pointer;
+" > <span style=" display: block;
+  padding: 8px 22px;">Register</span></a></li>
     </form>
 
   </div>

@@ -8,6 +8,7 @@ import { ScoreService } from '../score.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Modal1Component } from '../modal1/modal1.component';
 import { timer } from 'rxjs';
+import {ScoreResponse} from "../model/score-response";
 
 @Component({
   selector: 'app-question-paper',
@@ -189,17 +190,22 @@ export class QuestionPaperComponent implements OnInit {
       this.score = count;
 
     }
-    if (this.score >= 0) {
+   /* if (this.score >= 0) {
       this.message = ' Thanks for taking test, Please wait.. You will get the result soon !!!!';
 
-    }
+    }*/
     console.log('Corrected answers are ' + count);
     this.sharedService.finalResult = count;
     this.sharedService.setFinalResultSubjectValue(count);
     const scoreRequest = new ScoreRequest();
     scoreRequest.email = this.loginService.candidateUserName;
     scoreRequest.score = count;
-    this.scoreService.saveScores(scoreRequest);
+    this.sharedService.saveScores(scoreRequest).subscribe((resp: ScoreResponse)=>{
+      if( resp.message){
+        this.message = ' Thanks for taking test, Please wait.. You will get the result soon !!!!';
+      }
+    })
+   // this.scoreService.saveScores(scoreRequest);
     this.userAnswers = [];
 
   }

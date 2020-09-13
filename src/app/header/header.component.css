@@ -12,3 +12,17 @@ button {
 .initialClass {
   margin: 0px 0px 0px 750px;
 }
+
+
+li {
+  list-style: none;
+}
+
+.btn-signin span{
+  display: block;
+  padding: 8px 22px;
+}
+btn-register span{
+  display: block;
+  padding: 8px 22px;
+}

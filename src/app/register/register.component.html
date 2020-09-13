@@ -5,7 +5,7 @@
   </div>
   <br>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
       <form #registerForm="ngForm">
         <div class="form-group">
           <label for="firstname">Enter FirstName</label>
@@ -39,13 +39,13 @@
         <!-- {{mail1.className}} -->
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="text" class="form-control" name="password" [(ngModel)]="register.password"
+          <input type="password" class="form-control" name="password" [(ngModel)]="register.password"
                  #password="ngModel" required><span style="color: red">*</span>
           <small *ngIf="password.invalid && password.touched" class="text-danger">Password required</small>
         </div>
         <div class="form-group">
           <label for="confirmpassword">Confirm Password</label>
-          <input type="text" class="form-control" name="confirmpassword" required
+          <input type="password" class="form-control" name="confirmpassword" required
                  [(ngModel)]="register.confirmpassword" #confirmpassword="ngModel" (change)="validatePassword()"><span style="color: red">*</span>
           <small *ngIf="confirmpassword.invalid && confirmpassword.touched" class="text text-danger">Please Enter
             confirm password
@@ -94,6 +94,10 @@
           </div>
         </div>
       </form>
+    </div>
+    <div class="col-md-8">
+      <small *ngIf="showError" [ngStyle]="{'color': 'red'}">{{errorMessage}}</small>
+      <small *ngIf="showSuccess" [ngStyle]="{'color': 'green'}">{{showSuccessMsg}}</small>
     </div>
   </div>
 </div>
