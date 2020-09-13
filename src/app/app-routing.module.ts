@@ -13,6 +13,7 @@ import {WelcomeComponent} from "./welcome/welcome.component";
 
 
 const routes: Routes = [
+//  { path: '', component: ScoresComponent },
   { path: '', component: LoginComponent },
  // { path: '', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
