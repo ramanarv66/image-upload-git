@@ -1,14 +1,16 @@
 <div class="jumbotron">
   <div class="container">
-    <input type="file" class="btn btn-primary" (change)="onChange($event.target.files)" />
-
-    <div>
-      <h3>File Content</h3>
-      <!-- <pre>{{ temp }} </pre> -->
+    <input type="file" class="fileBtn"  (change)="onChange($event.target.files)" />
+    <button type="button" class="custombtn" (click)="formate()">PreviewQuestions</button>&nbsp;
+    <div class="row">
+      <small *ngIf="showError" style="margin: 0px 0px 0px 269px" class="text text-danger">Please Upload questions</small>
     </div>
-
-    <button type="button" class="btn btn-primary" (click)="formate()">
-      PreviewQuestions</button>&nbsp;
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     <div *ngIf="eachQuestions" class="form-group">
       <div *ngFor="let question of questionOptions">
         <div *ngIf=" question.options[0]">
@@ -29,7 +31,7 @@
       </div>
     </div>
     <p *ngIf="message" class="text text-success">{{message}}</p>
-    <p *ngIf="showError" class="text text-danger">Please Upload questions</p>
+
   </div>
 
 </div>

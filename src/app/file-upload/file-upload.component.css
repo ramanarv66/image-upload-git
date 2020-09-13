@@ -1,0 +1,31 @@
+.custombtn{
+
+
+  position: absolute;
+  text-decoration: none;
+  top: 226px;
+  margin: 0px 0px 0px 313px;
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background-image: linear-gradient(160deg, rgb(68, 87, 233) 0%, rgb(128, 208, 199) 100%);
+  /*background-image: linear-gradient(#42455a,#42455a), radial-gradient(circle at top left, #fd00da,#19d7f8);*/
+  background-origin: border-box;
+  /*background-clip: content-box, border-box;*/
+  cursor: pointer;
+
+}
+.fileBtn {
+
+  top: 180px;
+  position: absolute;
+  margin: 0px 0px 0px 247px;
+  text-decoration: none;
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background-image: linear-gradient(#42455a,#42455a), radial-gradient(circle at top left, #fd00da,#19d7f8);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  cursor: pointer;
+}

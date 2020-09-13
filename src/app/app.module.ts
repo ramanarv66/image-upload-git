@@ -32,6 +32,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ResuableDialogComponent } from './resuable-dialog/resuable-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +55,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     KeyDownDirective,
     RegisterComponent,
     WelcomeComponent,
+    ResuableDialogComponent,
 
 
 
@@ -60,6 +64,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     BrowserModule,
     MatSnackBarModule,
     AppRoutingModule,
+    MatButtonModule,
     FormsModule,
     MatSortModule,
     ReactiveFormsModule, NgxPaginationModule,
@@ -70,10 +75,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MatIconModule,
     MatInputModule,
     MatTableModule,
+    MatDialogModule,
     MatPaginatorModule
   ],
   entryComponents: [
-    Modal1Component
+    Modal1Component, ResuableDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
