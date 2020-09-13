@@ -11,3 +11,7 @@
   align-content: center;
   border-radius: 0.5em;
 }
+
+.blue-snackbar {
+  background: #2196F3;
+}

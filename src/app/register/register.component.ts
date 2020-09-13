@@ -17,30 +17,35 @@ export class RegisterComponent implements OnInit {
   showPassWordWarn: boolean;
   showSuccessMsg: boolean;
   showSpinner: boolean = false;
+  showError: boolean;
+  showSuccess: boolean;
+  errorMessage = 'Error in Registration, Pleasse Contact HR';
+  successMsg = 'Registration Successful, Please check your registered Email';
   registerForm: FormGroup;
   constructor(public registerService: RegisterService, public  snackBar: MatSnackBar,) { }
 
   ngOnInit() {
   }
   signIn(): void {
-    console.log(this.register)
-    this.showSpinner = true;
-
     if (this.register.password != this.register.confirmpassword) {
       this.showPassWordWarn = true;
     } else {
       this.showPassWordWarn = false;
       console.log(this.register)
+      this.showSpinner = true;
       this.registerService.register(this.register).subscribe((resp: RegisterResponse) => {
         if (resp) {
           console.log("Response finally Got " + resp)
           // this.showSuccessMsg = true;
-          this.showSnackBar();
+          this.showSnackBar(this.successMsg);
           this.showSpinner = false;
+          this.showSuccess = true;
         }
 
       }, () => {
         this.showSpinner = false;
+        this.showError = true;
+        this.showSnackBar(this.errorMessage);
       });
     }
 
@@ -58,8 +63,8 @@ export class RegisterComponent implements OnInit {
   cancel(): void {
     this.formValues.reset();
   }
-  showSnackBar() {
-    this.snackBar.open('Registration Successfull, Please check Email', 'close', {
+  showSnackBar(msg: string) {
+    this.snackBar.open(msg, 'Close', {
       duration: 5000,
       horizontalPosition: 'right',
       verticalPosition: 'top',

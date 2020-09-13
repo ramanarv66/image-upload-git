@@ -12,10 +12,12 @@ import {RegisterComponent} from "./register/register.component";
 
 
 const routes: Routes = [
+//  { path: '', component: ScoresComponent },
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'candidate', component: CandidateComponent, canActivate: [AuthGuardService] },
+  { path: 'scores', component: ScoresComponent },
   { path: 'scores', component: ScoresComponent, canActivate: [AuthGuardService] },
   { path: 'about', component: AboutComponent },
   { path: 'logout', component: LogoutComponent },

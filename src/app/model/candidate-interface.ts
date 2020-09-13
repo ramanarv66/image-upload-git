@@ -6,4 +6,5 @@ export interface CandidateInterface {
   gender:string;
   phone: number;
   city: string;
+  score: number;
 }
