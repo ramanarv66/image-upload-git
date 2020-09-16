@@ -10,11 +10,12 @@ import { AboutComponent } from './about/about.component';
 import { AuthGuardService } from './guard/auth-guard.service';
 import {RegisterComponent} from "./register/register.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
+import {ChartsComponent} from "./charts/charts.component";
 
 
 const routes: Routes = [
 //  { path: '', component: ScoresComponent },
-  { path: '', component: LoginComponent },
+  { path: '', component: WelcomeComponent },
  // { path: '', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

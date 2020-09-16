@@ -49,6 +49,7 @@ scoresData = [];
     this.showSpinner = false;
       console.log(resp);
       this.scoresData = resp['scoresList'];
+      this.scoreService.scoreData = this.scoresData;
       this.dataSource.data = this.scoresData;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;

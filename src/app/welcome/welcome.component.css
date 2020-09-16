@@ -1,5 +1,9 @@
-*{
+.container{
   background: #42455a;
   height: 100%;
-  width: 100%
+  width: auto;
+  height:40em;
+  background-size:cover; width:auto;
+  background-image: url("/src/assets/images/bgc.jpg");
+  background-position:50% 50%;
 }

@@ -14,20 +14,21 @@
     <div *ngIf="eachQuestions" class="form-group">
       <div *ngFor="let question of questionOptions">
         <div *ngIf=" question.options[0]">
-          <p>{{question.question }}</p>
+          <h6>{{question.question }}</h6>
           <input type="radio" #optin1 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
             [value]="question.options[0]" id="{{question.id}}">
-          {{question.options[0]}}
+          {{question.options[0]}}<br/>
           <input type="radio" #optin2 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
             [value]="question.options[1]" id="{{question.id}}">
-          {{question.options[1]}}
+          {{question.options[1]}}<br/>
           <input type="radio" #optin3 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
             [value]="question.options[2]" id="{{question.id}}">
-          {{question.options[2]}}
+          {{question.options[2]}}<br/>
           <input type="radio" #optin4 (change)="optionValue($event)" id="{{question.id}}" name="{{question.id}}"
             [value]="question.options[3]" id="{{question.id}}">
-          {{question.options[3]}}
+          {{question.options[3]}}<br/>
         </div>
+        <br/>
       </div>
     </div>
     <p *ngIf="message" class="text text-success">{{message}}</p>

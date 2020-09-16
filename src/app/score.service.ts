@@ -11,6 +11,7 @@ import {environment} from "../environments/environment";
 })
 export class ScoreService {
 
+  scoreData: any;
   constructor(private http: HttpClient) { }
 
   saveScores(scoreRequest: ScoreRequest) {

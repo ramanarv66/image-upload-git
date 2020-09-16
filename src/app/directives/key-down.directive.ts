@@ -17,9 +17,7 @@ export class KeyDownDirective {
     })
     document.body.addEventListener('keydown', event => {
       if (event.ctrlKey && 't'.indexOf(event.key) !== -1) {
-        alert('ctrl t');
         event.preventDefault();
-
       }
       if (event.ctrlKey && 'tncvxspwuaz'.indexOf(event.key) !== -1) {
         event.preventDefault();

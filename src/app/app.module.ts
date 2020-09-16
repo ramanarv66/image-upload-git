@@ -35,6 +35,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { ResuableDialogComponent } from './resuable-dialog/resuable-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import { ChartsComponent } from './charts/charts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,10 +53,10 @@ import {MatButtonModule} from '@angular/material/button';
     Modal1Component,
     MymodalComponent,
     RightClickDirective,
-    KeyDownDirective,
     RegisterComponent,
     WelcomeComponent,
     ResuableDialogComponent,
+    ChartsComponent,
 
 
 
@@ -81,7 +82,6 @@ import {MatButtonModule} from '@angular/material/button';
   entryComponents: [
     Modal1Component, ResuableDialogComponent
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
