@@ -36,7 +36,7 @@ scoresData = [];
     { headerName: 'Score', field: 'score' },
     { headerName: 'id', field: 'id' }
   ];
-  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'phone', 'city', 'username', 'score', 'status'];
+  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'phone', 'username', 'score', 'status'];
   constructor(public sharedService: SharedService, public scoreService: ScoreService, public loginService: LoginService) { }
 
   ngOnInit() {
@@ -86,5 +86,10 @@ scoresData = [];
     var yyyy = today.getFullYear();
     var time = today.getHours()+ '_' + today.getMinutes() + '_' + today.getSeconds();
   return  this.todayDate = mm + '/' + dd + '/' + yyyy + '/' + time;
+  }
+
+  excellentHover(event : any){
+    console.log(event);
+    alert('Working');
   }
 }

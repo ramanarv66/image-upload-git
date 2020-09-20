@@ -6,11 +6,11 @@
   border-left-width: 0.5em;
   border-left-color: rgb(60, 194, 60);
 }
-#bgc{
-  /*background-image: linear-gradient(135deg, rgb(139, 198, 236) 0%, rgb(149, 153, 226) 100%);*/
-  align-content: center;
-  border-radius: 0.5em;
-}
+/*#bgc{*/
+/*  !*background-image: linear-gradient(135deg, rgb(139, 198, 236) 0%, rgb(149, 153, 226) 100%);*!*/
+/*  align-content: center;*/
+/*  border-radius: 0.5em;*/
+/*}*/
 
 .blue-snackbar {
   background: #2196F3;
@@ -27,6 +27,13 @@
   background-image: linear-gradient(#42455a,#42455a), radial-gradient(circle at top left, #fd00da,#19d7f8);
   background-origin: border-box;
   background-clip: content-box, border-box;
+}
+
+.jumbotron{
+  background-color: #E8E8E8;
+  height: 100%;
+  width: 100%;
+
 }
 
 

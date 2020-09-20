@@ -19,6 +19,10 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" *ngIf="this.loginService.isMphasisUserLoggedIn"
+           routerLink="charts">Statistics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" *ngIf="this.loginService.isMphasisUserLoggedIn"
            routerLink="about">About</a>
       </li>
 

@@ -29,3 +29,10 @@
   background-clip: content-box, border-box;
   cursor: pointer;
 }
+
+.jumbotron{
+  background-color: #E8E8E8;
+  /*height: 100%;
+  width: 100%;*/
+
+}
