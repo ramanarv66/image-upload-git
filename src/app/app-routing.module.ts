@@ -8,17 +8,17 @@ import { CandidateComponent } from './candidate/candidate.component';
 import { ScoresComponent } from './scores/scores.component';
 import { AboutComponent } from './about/about.component';
 import { AuthGuardService } from './guard/auth-guard.service';
-import {RegisterComponent} from "./register/register.component";
-import {WelcomeComponent} from "./welcome/welcome.component";
-import {ChartsComponent} from "./charts/charts.component";
+import { RegisterComponent } from "./register/register.component";
+import { WelcomeComponent } from "./welcome/welcome.component";
+import { ChartsComponent } from "./charts/charts.component";
 
 
 const routes: Routes = [
-//  { path: '', component: ScoresComponent },
+  //  { path: '', component: ScoresComponent },
   { path: '', component: WelcomeComponent },
- // { path: '', component: WelcomeComponent },
+  // { path: '', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'charts', component: ChartsComponent },
+  { path: 'charts', component: ChartsComponent, canActivate: [AuthGuardService] },
   { path: 'register', component: RegisterComponent },
   { path: 'candidate', component: CandidateComponent, canActivate: [AuthGuardService] },
   { path: 'scores', component: ScoresComponent, canActivate: [AuthGuardService] },

@@ -3,10 +3,26 @@
   <div class="row">
     <div class="col-md-3" style="text-align: center">
       <div class="card text-white bg-danger">
-        <div class="card-header" wfd-id="100">Excellent &nbsp;  </div>
+        <div class="card-header" wfd-id="100">Excellent &nbsp; </div>
         <div class="card-body" wfd-id="99">
-          <h4 class="card-title" (hover)="excellentHover($event)">{{excellent | number}} / {{totalCandidates}}</h4>
+          <h4 class="card-title" id="excellent" (mouseenter)="excellentEnter($event)"
+            (mouseleave)="excellentLeave($event)">{{excellent | number}} / {{totalCandidates}}</h4>
+          <div *ngIf="showExcellent">
+            <table mat-table [dataSource]="dataSource2" matSort class="mat-elevation-z8">
+              <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> UserName </th>
+                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+              </ng-container>
 
+              <ng-container matColumnDef="score">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
+                <td mat-cell *matCellDef="let element"> {{element.score}}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayHoverColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayHoverColumns;"></tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -14,8 +30,25 @@
       <div class="card text-white bg-primary">
         <div class="card-header" wfd-id="100">Good</div>
         <div class="card-body" wfd-id="99">
-          <h4 class="card-title">{{good | number}} / {{totalCandidates}}</h4>
+          <h4 class="card-title" id="good" (mouseenter)="excellentEnter($event)" (mouseleave)="excellentLeave($event)">
+            {{good | number}} / {{totalCandidates}}</h4>
 
+        </div>
+        <div *ngIf="showGood">
+          <table mat-table [dataSource]="dataSource3" matSort class="mat-elevation-z8">
+            <ng-container matColumnDef="username">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> UserName </th>
+              <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="score">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
+              <td mat-cell *matCellDef="let element"> {{element.score}}
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayHoverColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayHoverColumns;"></tr>
+          </table>
         </div>
       </div>
     </div>
@@ -24,8 +57,25 @@
         <div class="card-header" wfd-id="100">Can try &nbsp;
         </div>
         <div class="card-body" wfd-id="99">
-          <h4 class="card-title">{{cantry | number}} / {{totalCandidates}}</h4>
+          <h4 class="card-title" (mouseenter)="excellentEnter($event)" (mouseleave)="excellentLeave($event)"
+            id="canTry">{{cantry | number}} / {{totalCandidates}}</h4>
 
+        </div>
+        <div *ngIf="showCantry">
+          <table mat-table [dataSource]="dataSource4" matSort class="mat-elevation-z8">
+            <ng-container matColumnDef="username">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> UserName </th>
+              <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="score">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
+              <td mat-cell *matCellDef="let element"> {{element.score}}
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayHoverColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayHoverColumns;"></tr>
+          </table>
         </div>
       </div>
     </div>
@@ -34,8 +84,24 @@
         <div class="card-header" wfd-id="100">Not Cleared &nbsp;
         </div>
         <div class="card-body" wfd-id="99">
-          <h4 class="card-title">{{notcleared | number}} / {{totalCandidates}}</h4>
+          <h4 class="card-title" (mouseenter)="excellentEnter($event)" (mouseleave)="excellentLeave($event)"
+            id="rejected">{{notcleared | number}} / {{totalCandidates}}</h4>
+          <div *ngIf="showRejected">
+            <table mat-table [dataSource]="dataSource5" matSort class="mat-elevation-z8">
+              <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> UserName </th>
+                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+              </ng-container>
 
+              <ng-container matColumnDef="score">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
+                <td mat-cell *matCellDef="let element"> {{element.score}}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayHoverColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayHoverColumns;"></tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -47,8 +113,8 @@
   </div>
 </div>
 
-<br/>
-<br/>
+<br />
+<br />
 <div class="row">
   <div class="col-md-3"></div>
   <mat-form-field appearance="fill">
@@ -58,9 +124,11 @@
 </div>
 <div class="row">
   <div class="col-md-3"></div>
-  <button (click)="exportToExcel()" class="btn btn-success">Export To Excel</button>
+  <button (click)="exportToExcel()" class="btn btn-success">Export To Excel &nbsp; &nbsp;<span>
+      <mat-icon style="color: blue;">cloud_download</mat-icon>
+    </span></button>
 </div>
-<br/>
+<br />
 <div class="row" #epltable>
   <div class="col-md-3"></div>
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
@@ -88,7 +156,7 @@
       <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
     </ng-container>
 
-   <!-- <ng-container matColumnDef="city">
+    <!-- <ng-container matColumnDef="city">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
       <td mat-cell *matCellDef="let element"> {{element.city}} </td>
     </ng-container>
@@ -101,15 +169,25 @@
     <ng-container matColumnDef="score" id="score">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
       <td mat-cell *matCellDef="let element"> {{element.score}}
-        </td>
+      </td>
     </ng-container>
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
       <td mat-cell *matCellDef="let element">
         <span *ngIf="element.score >=12"><small style="color:#27E46A">Cleared - Excellent</small></span>
         <span *ngIf="element.score <=5"><small style="color:#e41831">Not Cleared</small></span>
-        <span *ngIf="element.score >5 && element.score<8"><small style="color:#FF592A">Not Cleared - Can try</small></span>
+        <span *ngIf="element.score >5 && element.score<8"><small style="color:#FF592A">Not Cleared - Can
+            try</small></span>
         <span *ngIf="element.score >=8 && element.score<12"><small style="color:#5EFF74">Cleared - Good</small></span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Send Email </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon style="color:#3ebaff;margin-left:23px;cursor: pointer;" aria-hidden="false"
+          aria-label="Example home icon" (click)="emailClick(element.score, element.email, element.firstname)">email
+        </mat-icon>
+        <!-- <small style="color:red" *ngIf='showEmailSuccess'>Status Sent To Candidate</small> -->
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

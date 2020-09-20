@@ -45,6 +45,7 @@ import { ChartsComponent } from './charts/charts.component';
     LoginComponent,
     QuestionPaperComponent,
     LogoutComponent,
+    KeyDownDirective,
     ScoresComponent,
     AboutComponent,
     CandidateComponent,
@@ -57,8 +58,6 @@ import { ChartsComponent } from './charts/charts.component';
     WelcomeComponent,
     ResuableDialogComponent,
     ChartsComponent,
-
-
 
   ],
   imports: [
@@ -82,6 +81,7 @@ import { ChartsComponent } from './charts/charts.component';
   entryComponents: [
     Modal1Component, ResuableDialogComponent
   ],
+  providers:[KeyDownDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

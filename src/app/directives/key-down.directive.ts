@@ -10,15 +10,17 @@ export class KeyDownDirective {
   constructor(private renderer2: Renderer2, private elementRef: ElementRef,public dialog: MatDialog) {
     //this.renderer2.setStyle(this.elementRef.nativeElement, 'background', 'blue');
     document.addEventListener("visibilitychange", () => {
-      console.log(document.hasFocus());
       const dialogRef =  dialog.open(ResuableDialogComponent,{
         data: { eventName: 'nextpage' },
       });
     })
     document.body.addEventListener('keydown', event => {
-      if (event.ctrlKey && 't'.indexOf(event.key) !== -1) {
-        event.preventDefault();
-      }
+      // if (event.ctrlKey && 't'.indexOf(event.key) !== -1) {
+      //   event.preventDefault();
+      //   const dialogRef =  dialog.open(ResuableDialogComponent,{
+      //     data: { eventName: 'nextpage' },
+      //   });
+      // }
       if (event.ctrlKey && 'tncvxspwuaz'.indexOf(event.key) !== -1) {
         event.preventDefault();
       // Copy paste not allowed

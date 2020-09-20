@@ -1,8 +1,9 @@
 export const environment = {
   production: true,
-  registerUrl: 'http://localhost:9898/regCand',
-  candidateListUrl: 'http://localhost:9898/getCandidatesList',
-  validateUrl: 'http://localhost:9898/validate',
-  saveScoreUrl: 'http://localhost:9898/saveScore',
-  getScoresUrl: 'http://localhost:9898/getScores'
+  registerUrl: 'http://hackerrankappang.cfapps.io/regCand',
+  candidateListUrl: 'http://hackerrankappang.cfapps.io/getCandidatesList',
+  validateUrl: 'http://hackerrankappang.cfapps.io/validate',
+  saveScoreUrl: 'http://hackerrankappang.cfapps.io/saveScore',
+  getScoresUrl: 'http://hackerrankappang.cfapps.io/getScores',
+  sendStatusEmail: 'http://hackerrankappang.cfapps.io/sendStatus',
 };

@@ -8,3 +8,9 @@ export interface CandidateInterface {
   city: string;
   score: number;
 }
+
+export class DisplayScores{
+  username: string;
+  score: number;
+  status: string;
+}

@@ -8,7 +8,8 @@ export const environment = {
   candidateListUrl: 'http://localhost:9898/getCandidatesList',
   validateUrl: 'http://localhost:9898/validate',
   getScoresUrl: 'http://localhost:9898/getScores',
-  saveScoreUrl: 'http://localhost:9898/saveScore'
+  saveScoreUrl: 'http://localhost:9898/saveScore',
+  sendStatusEmail:  'http://localhost:9898/sendStatus',
 };
 
 /*
